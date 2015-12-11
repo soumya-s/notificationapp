@@ -4,9 +4,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose   = require('mongoose');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var routes              = require('./routes/index');
+var users               = require('./routes/users');
+var notificationDetails = require('./routes/notificationDetails');
+
+
 
 var app = express();
 
@@ -24,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/notificationDetails',notificationDetails);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -31,6 +36,9 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+
+mongoose.connect('mongodb://soumyas:test123@ds027318.mongolab.com:27318/wellnessmate'); 
 
 // error handlers
 
