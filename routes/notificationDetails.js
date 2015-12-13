@@ -9,7 +9,16 @@ router.post('/', function(req,res,next) {
 		      notification.details=data;
 		      //console.log(notification.details);  
 		 	 notification.save(function(err, notificationResult) {
-		  	   
+		  	   if(err){
+
+		  	   }
+		  	   else
+		  	   {
+				  	res.json ({
+			         		code:200
+			     
+			    }); 
+		  	   }
 		  });
 	}
 });
